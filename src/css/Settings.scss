@@ -1,21 +1,20 @@
 .settings {
-    background: rgb(10,10,10);
-    border: 1px solid white;
     padding: .5rem;
-    border-radius: 2px;
+    border-radius: 1px;
     display: block;
     position: absolute;
     width: 12rem;
     top: 1rem;
     right: 1rem;
+    mix-blend-mode: exclusion;
 }
 .setting {
-    margin-bottom: .8rem;
+    margin-bottom: 1rem;
     max-width: 100%;
+    color: white;
 }
 label {
-    font-size: .7rem;
+    font-size: .9rem;
     display: block;
-    color: white;
     margin-bottom: 0rem;
 }

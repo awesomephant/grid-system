@@ -1,6 +1,8 @@
 .slider {
   position: relative;
-  padding-bottom: .2rem;
+  .sliderGroup & {
+    margin-bottom: .8rem;
+  }
 }
 
 .slider-input {
@@ -10,7 +12,6 @@
 .slider-value {
   max-width: 2.5em;
   display: inline-block;
-  overflow: hidden;
 }
 
 .slider-track {
@@ -18,8 +19,11 @@
 }
 
 .value-input {
+  position: relative;
+  top: .3rem;
   font-size: .7rem;
   text-align: left;
+  font-family: Lucida Console, monospace;
   margin-left: .5rem;
   appearance: textfield;
   border: 0;
@@ -28,6 +32,13 @@
   padding: 0;
   color: white;
   background: none;
+  border-bottom: 1px solid transparent;
+
+  &:invalid {
+    border: 0;
+    box-shadow: none;
+  }
+
 }
 .value-input:hover, .value-input:focus {
   border-bottom: 1px solid gray;
@@ -91,7 +102,6 @@ input[type=range]::-webkit-slider-thumb {
     cursor: pointer;
     background: rgb(10,10,10);
     border-radius: 1.3px;
-    border: 0.2px solid #010101;
   }
   
   input[type=range]:focus::-webkit-slider-runnable-track {
@@ -104,7 +114,7 @@ input[type=range]::-webkit-slider-thumb {
     cursor: pointer;
     border: 1px solid white;
     background: rgb(10,10,10);
-    border-radius: 10px;
+    border-radius: 2px;
   }
   
   input[type=range]::-ms-track {
