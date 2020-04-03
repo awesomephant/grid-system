@@ -1,7 +1,8 @@
 import React from 'react'
 import './css/Toggle.scss'
+import PropTypes from 'prop-types';
 
-export default class Toggle extends React.Component {
+class Toggle extends React.Component {
     constructor(props) {
         super(props)
         this.inputRef = React.createRef()
@@ -18,7 +19,7 @@ export default class Toggle extends React.Component {
     render() {
         return (
             <div className='setting toggle'>
-                <label htmlFor={this.props.id}>{this.props.title}</label>
+                <label htmlFor={this.props.id}>{this.props.title || this.props.id}</label>
                 <div data-active={this.props.value} className="toggle-body" onClick={this.handleClick}>
                     <div className="toggle-element"></div>
                 </div>
@@ -27,3 +28,12 @@ export default class Toggle extends React.Component {
         )
     }
 }
+
+Toggle.propTypes = {
+    id: PropTypes.string.isRequired,
+    value: PropTypes.bool.isRequired,
+    title: PropTypes.string,
+    handleChange: PropTypes.func,
+}
+
+export default Toggle;

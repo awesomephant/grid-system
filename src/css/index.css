@@ -1,8 +1,16 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
+}
+
 body {
   margin: 0;
-  font-family: sans-serif;
+  font-family: Untitled Sans, serif;
   background: black;
 }
+
 line {
   stroke: gray;
   stroke-width: 1px;
@@ -10,4 +18,19 @@ line {
 
 .element {
   fill: white;
+}
+
+.testPreview {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.app-header {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding-top: 1rem;
+  position: relative;
+  z-index: 100;
 }

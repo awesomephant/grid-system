@@ -28,14 +28,14 @@
 .toggle-element {
     width: 1rem;
     height: 1rem;
-    transform: scale(.8) translateX(0);
+    transform: scale(.8) translateX(-1px) translateY(-1.2px);
     border-radius: 100%;
     transition: 200ms;
     background: gray;
 
     [data-active=true] & {
         background: white;
-        transform: scale(.8) translateX(1.2rem);
+        transform: scale(.8) translateX(1.12rem) translateY(-1.2px);
     }
 }
 
@@ -67,5 +67,21 @@
     }
     svg {
         width: 1.1rem
+    }
+}
+
+.imageToggle {
+    .images {
+        display: flex;
+    }
+}
+
+.imageToggle {
+    svg {
+        width: 1.2rem;
+        margin-right: .5rem;
+    }
+    path {
+        fill: white;
     }
 }

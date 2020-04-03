@@ -1,7 +1,6 @@
 import React from 'react'
-import LockToggle from './LockToggle.js'
 
-export default class LockingSliderGroup extends React.Component {
+export default class LockToggle extends React.Component {
     constructor(props) {
         super(props)
         this.handleClick = this.handleClick.bind(this)

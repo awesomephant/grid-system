@@ -1,0 +1,59 @@
+.editor-glyphs {
+    display: grid;
+    position: absolute;
+    bottom: 1em;
+    grid-template-columns: repeat(20, 2em);
+    grid-template-rows: auto;
+    margin: 1rem;
+    border-top: 1px solid gray;
+    border-left: 1px solid gray;
+}
+.editor-glyph {
+    color: white;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid gray;
+    border-right: 1px solid gray;
+    transition: 100ms;
+    &[data-active=true]{
+        background: white;
+        color: black;
+    }
+    &:last-of-type {
+        border-right: 1px solid gray;
+    }
+
+    button {
+        appearance: none;
+        background: none;
+        color: inherit;
+        width: 100%;
+        border: 0;
+        font-family: inherit;
+        cursor: pointer;
+        &:hover {
+            color: gray;
+        }
+    }
+}
+
+.editor-preview {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    circle {
+        stroke: gray;
+        cursor: pointer;
+        transition: 30ms;
+        &:hover {
+            stroke: white;
+        }
+    }
+    [data-active="1"]{
+        fill: white;
+        stroke: white;
+    }
+}
