@@ -10,7 +10,7 @@ class App extends React.Component {
     this.state = {
       width: 0,
       height: 0,
-      editModeEnabled: true,
+      editModeEnabled: false,
       settings: {
         gridID: "6x8",
         gridColumns: 6,
@@ -18,8 +18,8 @@ class App extends React.Component {
         gridSkew: 1,
         gridActive: true,
         padding: 100,
-        globalScaleX: .7,
-        globalScaleY: 1,
+        globalScaleX: 1.5,
+        globalScaleY: 1.5,
         elementScaleX: .7,
         elementScaleY: .7,
         elementRotation: 20,
