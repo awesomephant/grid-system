@@ -30,8 +30,6 @@ export default class Glyph extends React.Component {
             }
         }
         const positionsList = g.letters[this.props.g].replace(/ /g, '').split('');
-        console.log(positionsList)
-        console.log(g)
         for (let i = 0; i < positionsList.length; i++) {
             let row = Math.floor(i / g.columns);
             const pos = [(i - row * g.columns), row]

@@ -23,7 +23,8 @@ class App extends React.Component {
         elementScaleX: .7,
         elementScaleY: .7,
         elementRotation: 20,
-        elementShape: 'circle'
+        elementShape: 'circle',
+        smoothing: 20,
       }
 
     }
