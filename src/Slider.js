@@ -7,7 +7,7 @@ export default class Slider extends React.Component {
         this.handleChange = this.handleChange.bind(this);
     }
     handleChange(e) {
-        this.props.updateSetting(this.props.id, e.target.value)
+        this.props.updateSetting(this.props.id, parseFloat(e.target.value))
     }
     render() {
         let valueStyle = {

@@ -3,6 +3,9 @@ import Settings from './Settings';
 import Glyph from './Glyph';
 import GlyphEditor from './GlyphEditor';
 import Toggle from './Toggle';
+import font from "./Font"
+
+const defaultSize = 30;
 
 class App extends React.Component {
   constructor(props) {
@@ -15,22 +18,24 @@ class App extends React.Component {
         gridID: "6x8",
         gridColumns: 6,
         gridRows: 8,
-        gridSkew: 1,
+        gridSkew: 12,
         gridActive: true,
         padding: 100,
-        globalScaleX: 1.5,
-        globalScaleY: 1.5,
-        elementScaleX: .7,
-        elementScaleY: .7,
+        elementScaleX: 1.5,
+        elementScaleY: 1.5,
         elementRotation: 20,
         elementShape: 'circle',
         smoothing: 20,
+        cellWidth: 30,
+        cellHeight: 40,
+        smoothing: 10,
+        spacing: 17,
+        text: "Space"
       }
 
     }
     this.updateSetting = this.updateSetting.bind(this);
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
-    this.handleModeSwitch = this.handleModeSwitch.bind(this);
 
     window.addEventListener('resize', this.updateWindowDimensions);
   }
@@ -41,17 +46,6 @@ class App extends React.Component {
 
   updateWindowDimensions() {
     this.setState({ width: window.innerWidth, height: window.innerHeight });
-  }
-
-  handleModeSwitch() {
-    this.setState((prevState) => {
-      if (prevState.editModeEnabled) {
-        prevState.editModeEnabled = false;
-      } else {
-        prevState.editModeEnabled = true;
-      }
-      return prevState
-    })
   }
 
   updateSetting(setting, value) {
@@ -66,37 +60,32 @@ class App extends React.Component {
   }
 
   render() {
-    const word = 'A';
-    let currentX = -250;
-    let currentY = 100;
-    const glyphs = word.split('').map((g, i) => {
-      currentX += 350 * this.state.settings.globalScaleX;
-      if (currentX > this.state.width - 350) {
-        //   currentX = 100
-        //        currentY += 400;
+    const letters = this.state.settings.text.toLowerCase().split('');
+    const gridWidth = this.state.settings.gridColumns * this.state.settings.cellWidth + defaultSize * this.state.settings.elementScaleX + this.state.settings.spacing;
+    const gridHeight = this.state.settings.gridRows * this.state.settings.cellHeight;
+    let baseX = (this.state.width / 2) - ((gridWidth / 2) * letters.length);
+    let baseY = (this.state.height / 2) - (gridHeight / 2)
+
+    const glyphs = letters.map((g, i) => {
+      if (font.grids[this.state.settings.gridID].letters[g]) {
+        let currentX = baseX + gridWidth * i
+        return (
+          <Glyph key={`glyph-${i}`} settings={this.state.settings} g={g} y={baseY} x={currentX}></Glyph>
+        )
       }
-      return (
-        <Glyph key={`glyph-${i}`} settings={this.state.settings} g={g} y={currentY} x={currentX} glyphScale={40}></Glyph>
-      )
     })
 
-    let mainContent = null;
-    if (this.state.editModeEnabled) {
-      mainContent = <GlyphEditor width={this.state.width} height={this.state.height}></GlyphEditor>
-    } else {
-      mainContent = <><svg className='testPreview' width={this.state.width} height={this.state.height}>{glyphs}</svg>        <Settings updateSetting={this.updateSetting} settings={this.state.settings}></Settings>
-      </>
-    }
 
+    const containerWidth = (this.state.settings.gridColumns - 1) * this.state.settings.cellWidth + Math.abs(this.state.settings.gridSkew) + (defaultSize * this.state.settings.elementScaleX * 4)
+    const containerHeight = this.state.settings.gridRows * this.state.settings.cellHeight + (defaultSize * this.state.settings.elementScaleY * 2)
     return (
-      <>
-        <header className="app-header">
-          <Toggle id="editModeEnabled" title='Test / Design' value={this.state.editModeEnabled} updateSetting={this.handleModeSwitch}></Toggle>
-        </header>
-        {mainContent}
-      </>
+      <div>
+        <svg className='testPreview' width={this.state.width} height={this.state.height}>{glyphs}</svg>
+        <Settings updateSetting={this.updateSetting} settings={this.state.settings}></Settings>
+      </div>
     );
   }
 }
+
 
 export default App;
