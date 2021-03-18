@@ -1,8 +1,6 @@
 import React from 'react';
 import Settings from './Settings';
 import Glyph from './Glyph';
-import GlyphEditor from './GlyphEditor';
-import Toggle from './Toggle';
 import font from "./Font"
 
 const defaultSize = 30;
@@ -15,6 +13,7 @@ class App extends React.Component {
       height: 0,
       editModeEnabled: false,
       settings: {
+        showGrid: true,
         gridID: "6x8",
         gridColumns: 6,
         gridRows: 8,
@@ -25,7 +24,6 @@ class App extends React.Component {
         elementScaleY: 1.5,
         elementRotation: 20,
         elementShape: 'circle',
-        smoothing: 20,
         cellWidth: 30,
         cellHeight: 40,
         smoothing: 10,
@@ -63,21 +61,21 @@ class App extends React.Component {
     const letters = this.state.settings.text.toLowerCase().split('');
     const gridWidth = this.state.settings.gridColumns * this.state.settings.cellWidth + defaultSize * this.state.settings.elementScaleX + this.state.settings.spacing;
     const gridHeight = this.state.settings.gridRows * this.state.settings.cellHeight;
-    let baseX = (this.state.width / 2) - ((gridWidth / 2) * letters.length);
+    let baseX = (this.state.width / 1.92) - ((gridWidth / 2) * letters.length);
     let baseY = (this.state.height / 2) - (gridHeight / 2)
 
     const glyphs = letters.map((g, i) => {
       if (font.grids[this.state.settings.gridID].letters[g]) {
         let currentX = baseX + gridWidth * i
+        let currentY = baseY
         return (
-          <Glyph key={`glyph-${i}`} settings={this.state.settings} g={g} y={baseY} x={currentX}></Glyph>
+          <Glyph key={`glyph-${i}`} settings={this.state.settings} g={g} y={currentY} x={currentX}></Glyph>
         )
       }
+      return null;
     })
 
 
-    const containerWidth = (this.state.settings.gridColumns - 1) * this.state.settings.cellWidth + Math.abs(this.state.settings.gridSkew) + (defaultSize * this.state.settings.elementScaleX * 4)
-    const containerHeight = this.state.settings.gridRows * this.state.settings.cellHeight + (defaultSize * this.state.settings.elementScaleY * 2)
     return (
       <div>
         <svg className='testPreview' width={this.state.width} height={this.state.height}>{glyphs}</svg>

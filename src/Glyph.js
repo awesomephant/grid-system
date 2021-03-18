@@ -10,7 +10,7 @@ export default class Glyph extends React.Component {
         const cols = []
         const elements = []
         let g = font.grids[this.props.settings.gridID];
-        if (this.props.settings.gridActive) {
+        if (this.props.settings.showGrid) {
             // Draw Rows
             for (let i = 0; i < this.props.settings.gridRows; i++) {
                 let x1 = (this.props.settings.gridSkew / (this.props.settings.gridRows - 1)) * i + this.props.x;

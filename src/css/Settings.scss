@@ -1,22 +1,50 @@
 .settings {
-    display: block;
-    position: absolute;
-    width: 100%;
-    bottom: 0;
-    left: 0;
-    padding: 1rem;
-    mix-blend-mode: exclusion;
-    display: grid;
-    border-top: 1px solid gray;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+  display: block;
+  position: fixed;
+  width: 15rem;
+  top: 0;
+  left: 0;
+  padding: 1rem;
+  mix-blend-mode: exclusion;
+  color: white;
+  font-size: 0.9rem;
+  h2 {
+    font-weight: bold;
+    margin-bottom: 1em;
+  }
 }
 .setting {
-    margin-bottom: 1rem;
-    max-width: 100%;
-    color: white;
+  margin-bottom: 1rem;
+  max-width: 100%;
+  &.text {
+    input {
+      background: transparent;
+      border: 1px solid white;
+      border-radius: 2px;
+      color: white;
+      font-family: IBM Plex Mono;
+      padding: 0.2em 0.4em;
+      &:focus {
+        outline: 0;
+      }
+    }
+  }
+  &.dropdown {
+    select {
+      background: transparent;
+      border: 1px solid white;
+      color: white;
+      width: 100%;
+      font-family: inherit;
+      text-transform: capitalize;
+      padding: 0.2em 0.4em;
+      &:focus {
+        outline: 0;
+      }
+    }
+  }
 }
 label {
-    font-size: .9rem;
-    display: block;
-    margin-bottom: 0rem;
+  display: block;
+  margin-bottom: 0.1rem;
 }
